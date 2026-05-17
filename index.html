@@ -62,10 +62,12 @@ a:hover{opacity:0.7}
 .company-info h3{font-size:1.05rem;font-weight:700;margin-bottom:2px}
 .company-info .domain{font-size:0.82rem;color:var(--text2)}
 .company-info .stakeholders{font-size:0.72rem;color:var(--text2);margin-top:2px}
-.card-contacts-preview{font-size:0.78rem;color:var(--text2);margin-top:8px;padding-top:10px;border-top:1px solid var(--border)}
-.card-contacts-preview span{font-weight:600;color:var(--text)}
-.click-hint{position:absolute;top:12px;right:14px;font-size:0.7rem;color:#a3a3a3;opacity:0;transition:opacity .2s}
-.company-card:hover .click-hint{opacity:1}
+.card-contacts-list{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+.card-contact-row{display:flex;flex-direction:column;gap:1px}
+.card-contact-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+.card-email{font-size:0.75rem;color:var(--text2)}
+.card-cta{margin-top:12px;font-size:0.78rem;font-weight:600;color:var(--text2);text-align:right;transition:color .2s}
+.company-card:hover .card-cta{color:var(--text)}
 
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
@@ -362,30 +364,30 @@ var emailSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 
 var currentList = COMPANIES;
 
+function openModalByIdx(idx) {
+  openModal(currentList[idx]);
+}
+
 function renderCompanies(list) {
   currentList = list;
   var grid = document.getElementById('company-grid');
   document.getElementById('count-badge').textContent = list.length + ' entreprise' + (list.length > 1 ? 's' : '');
   grid.innerHTML = list.map(function(c, idx) {
-    var names = c.contacts.filter(function(ct){return ct.name}).map(function(ct){return ct.name.split(' ')[0]});
-    var preview = names.length > 0 ? '<span>' + names.slice(0,3).join(', ') + '</span>' + (names.length > 3 ? ' + ' + (names.length - 3) + ' autres' : '') : '';
-    return '<div class="company-card" data-idx="' + idx + '">' +
-      '<span class="click-hint">Voir details</span>' +
+    var validContacts = c.contacts.filter(function(ct){ return ct.name; });
+    var contactsHtml = validContacts.map(function(ct) {
+      var emailHtml = ct.email ? '<span class="card-email">' + ct.email + '</span>' : '';
+      return '<div class="card-contact-row"><span class="card-contact-name">' + ct.name + '</span>' + emailHtml + '</div>';
+    }).join('');
+    return '<div class="company-card" onclick="openModalByIdx(' + idx + ')">' +
       '<div class="company-header">' +
         '<div class="company-logo"><img src="' + c.logo_url + '" alt="" onerror="this.remove()"></div>' +
         '<div class="company-info"><h3>' + c.name + '</h3><div class="domain">' + c.domain + '</div><div class="stakeholders">' + c.stakeholders_count + ' stakeholders</div></div>' +
       '</div>' +
-      (preview ? '<div class="card-contacts-preview">' + preview + '</div>' : '') +
+      (contactsHtml ? '<div class="card-contacts-list">' + contactsHtml + '</div>' : '') +
+      '<div class="card-cta">Voir contacts complets &rarr;</div>' +
     '</div>';
   }).join('');
 }
-
-document.getElementById('company-grid').addEventListener('click', function(e) {
-  var card = e.target.closest('.company-card');
-  if (!card) return;
-  var idx = parseInt(card.getAttribute('data-idx'));
-  openModal(currentList[idx]);
-});
 
 function openModal(c) {
   var html = '<button class="modal-close" onclick="closeModal()">&times;</button>' +
