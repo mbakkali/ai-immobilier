@@ -272,7 +272,8 @@ function renderCompanies(list) {
       ].filter(Boolean).join('');
       return '<div class="contact-item"><div class="contact-avatar">' + getInitials(ct.name) + '</div><div class="contact-details"><div class="name">' + ct.name + '</div><div class="title">' + ct.title + '</div><div class="contact-links">' + linksHtml + '</div></div></div>';
     }).join('');
-    return '<div class="company-card"><div class="company-header"><div class="company-logo"><img src="' + c.logo_url + '" alt="" style="width:32px;height:32px;object-fit:contain" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=&quot;font-weight:700;font-size:0.95rem;color:var(--accent2)&quot;>'+c.name.slice(0,2).toUpperCase()+'</span>'"></div><div class="company-info"><h3>' + c.name + '</h3><div class="domain"><a href="https://' + c.domain + '" target="_blank" rel="noopener">' + c.domain + '</a></div><div class="stakeholders">' + c.stakeholders_count + ' stakeholders dans le CRM</div></div></div><div class="contacts-list">' + contactsHtml + '</div></div>';
+    var initials = c.name.slice(0,2).toUpperCase();
+    return '<div class="company-card"><div class="company-header"><div class="company-logo"><img src="' + c.logo_url + '" alt="" onerror="this.remove()"></div><div class="company-info"><h3>' + c.name + '</h3><div class="domain"><a href="https://' + c.domain + '" target="_blank" rel="noopener">' + c.domain + '</a></div><div class="stakeholders">' + c.stakeholders_count + ' stakeholders dans le CRM</div></div></div><div class="contacts-list">' + contactsHtml + '</div></div>';
   }).join('');
 }
 
