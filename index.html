@@ -23,8 +23,10 @@ a:hover{opacity:0.7}
 .profile-photo{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid var(--text);box-shadow:0 4px 20px rgba(0,0,0,0.1)}
 .profile-name{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;margin-top:4px}
 .profile-bio{font-size:0.85rem;color:var(--text2);margin-top:2px}
-.profile-desc{max-width:580px;font-size:0.9rem;color:var(--text2);line-height:1.65;margin-top:14px;text-align:center}
+.profile-desc{max-width:600px;font-size:0.88rem;color:var(--text2);line-height:1.7;margin-top:16px;text-align:left;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--text);border-radius:10px;padding:16px 20px}
 .profile-desc strong{color:var(--text);font-weight:700}
+.profile-desc .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.profile-desc .chip{display:inline-block;padding:3px 10px;border-radius:6px;font-size:0.75rem;font-weight:600;background:var(--surface2);border:1px solid var(--border);color:var(--text)}
 .profile-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .profile-links a{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid var(--border);background:var(--surface);color:var(--text)}
 .profile-links a:hover{background:var(--text);color:#fff;border-color:var(--text);opacity:1}
@@ -160,7 +162,16 @@ a:hover{opacity:0.7}
     <div class="profile-name">Mehdi Bakkali</div>
     <div class="profile-bio">Sales & Business Development &middot; Immobilier &amp; PropTech &middot; Paris</div>
     <div class="profile-desc">
-      Je recherche un poste en <strong>Sales / Business Development IA</strong> — profil technico-commercial avec 8 ans d'experience. <strong>Ex-fondateur &amp; CTO</strong> d'Upfund (startup Data &amp; IA pour l'immobilier commercial), ingenieur INSA Lyon, MSc X-HEC Entrepreneurs. Expertise technique en <strong>Data Engineering &amp; IA appliquee</strong> (Python, RAG, agents IA, cloud AWS/GCP) combinee a une experience commerciale terrain : levee de fonds 1,5M$, clients grands comptes (BNP Real Estate, CBRE, L'Oreal). Forte connaissance du <strong>secteur immobilier</strong> — ce site compile les 200 entreprises a cibler pour un GTM France sur des sujets <strong>IA &amp; Data</strong>.
+      Je recherche un poste en <strong>Sales / Business Development IA</strong> — profil technico-commercial avec 8 ans d'experience. <strong>Ex-fondateur &amp; CTO</strong> d'Upfund (startup Data &amp; IA pour l'immobilier commercial). Expertise en <strong>Data Engineering &amp; IA appliquee</strong> combinee a une experience commerciale terrain : levee de fonds 1,5M&euro;, clients grands comptes (BNP Real Estate, CBRE, L'Oreal). Forte connaissance du secteur immobilier — ce site compile les <strong>200 entreprises a cibler</strong> pour un GTM France sur des sujets <strong>IA &amp; Data</strong>.
+      <div class="chips">
+        <span class="chip">Ex-Fondateur &amp; CTO</span>
+        <span class="chip">INSA Lyon · X-HEC</span>
+        <span class="chip">Data &amp; AI Engineer</span>
+        <span class="chip">Sales B2B</span>
+        <span class="chip">1,5M&euro; leve</span>
+        <span class="chip">Immobilier &amp; PropTech</span>
+        <span class="chip">Paris</span>
+      </div>
     </div>
     <div class="profile-links">
       <a class="primary" href="https://github.com/mbakkali/ai-immobilier/raw/main/mehdi_bakkali_resume_sales.pdf" target="_blank">
