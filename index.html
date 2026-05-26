@@ -54,6 +54,11 @@ a:hover{opacity:0.7}
 .search-box:focus{border-color:#a3a3a3}
 .search-box::placeholder{color:#a3a3a3}
 .count-badge{display:flex;align-items:center;padding:0 16px;border-radius:10px;background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:0.9rem;white-space:nowrap}
+.banner{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;margin-bottom:20px;font-size:0.83rem;color:#92400e;line-height:1.5}
+.banner svg{flex-shrink:0;margin-top:1px;color:#d97706}
+.download-btn{display:inline-flex;align-items:center;gap:6px;padding:12px 18px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:0.88rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s;text-decoration:none}
+.download-btn:hover{background:var(--text);color:#fff;border-color:var(--text)}
+.download-btn svg{width:15px;height:15px}
 
 /* COMPANY GRID */
 .company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
@@ -187,9 +192,17 @@ a:hover{opacity:0.7}
 
 <!-- TAB 1: Companies -->
 <div id="tab-companies" class="tab-content active">
+  <div class="banner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span><strong>Donnees issues de mon CRM personnel</strong> — exportees en 2024/2025. Certaines informations peuvent etre expirees : des contacts ont pu changer de poste ou d'entreprise depuis. Il est recommande de verifier sur LinkedIn avant tout contact.</span>
+  </div>
   <div class="controls">
     <input class="search-box" type="text" id="search" placeholder="Rechercher une entreprise, un contact, un titre..." oninput="filterCompanies()">
     <div class="count-badge" id="count-badge">200 entreprises</div>
+    <a class="download-btn" href="https://github.com/mbakkali/ai-immobilier/raw/main/hubspot_immobilier_top200.csv" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Telecharger CSV
+    </a>
   </div>
   <div class="company-grid" id="company-grid"></div>
 </div>
